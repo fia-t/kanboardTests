@@ -2,6 +2,7 @@ target/
 !.mvn/wrapper/maven-wrapper.jar
 target
 build
+.log
 
 ### IntelliJ IDEA ###
 out/
