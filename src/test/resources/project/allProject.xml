@@ -1,0 +1,7 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="allProjectTest">
+    <suite-files>
+        <suite-file path="createProject.xml" />
+        <suite-file path="removeProject.xml" />
+    </suite-files>
+</suite>
