@@ -1,8 +1,0 @@
-<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
-<suite name="Task">
-    <test name="createTask">
-        <classes>
-            <class name="test.ui.tests.task.create.createTaskTests" />
-        </classes>
-    </test>
-</suite>

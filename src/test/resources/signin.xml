@@ -1,5 +1,5 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
-<suite name="Auth">
+<suite name="AuthTest">
     <test name="SignIn">
         <classes>
             <class name="test.ui.tests.signin.SigninTest" />

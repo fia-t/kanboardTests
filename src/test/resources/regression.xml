@@ -1,12 +1,12 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 <suite name="AllTests">
     <suite-files>
-        <suite-file path="signin/signin.xml" />
+        <suite-file path="signin.xml" />
     </suite-files>
     <suite-files>
-        <suite-file path="project/allProject.xml" />
+        <suite-file path="allProjectTest.xml" />
     </suite-files>
     <suite-files>
-        <suite-file path="task/allTask.xml" />
+        <suite-file path="allTaskTest.xml" />
     </suite-files>
 </suite>

@@ -1,8 +1,0 @@
-<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
-<suite name="allTaskTests">
-    <suite-files>
-        <suite-file path="createTask.xml" />
-        <suite-file path="commentTask.xml" />
-        <suite-file path="closeTask.xml" />
-    </suite-files>
-</suite>

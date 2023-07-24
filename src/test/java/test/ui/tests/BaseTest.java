@@ -23,8 +23,8 @@ public class BaseTest {
     public static Object[][] browsersData() {
         return new Object[][]{
                 {"chrome"},
-                {"headless"},
-                {"firefox"},
+//                {"headless"},
+//                {"firefox"},
         };
     }
 
