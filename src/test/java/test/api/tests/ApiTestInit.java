@@ -12,7 +12,7 @@ public class ApiTestInit {
         ImmutableMap.<String, String>builder()
                 .put("URL",API_URL)
                 .build(), System.getProperty("user.dir")
-                +"/allure-results/");
+                +"target/allure-results");
     }
 
 
