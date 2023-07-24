@@ -16,6 +16,7 @@
         <suite>allProjectTest</suite>
         <suite>allTaskTest</suite>
         <suite>regression</suite>
+        <suite>apiUsersTests</suite>
     </properties>
 
     <dependencies>
@@ -70,6 +71,12 @@
             <artifactId>rest-assured</artifactId>
             <version>5.3.0</version>
             <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>com.github.automatedowl</groupId>
+            <artifactId>allure-environment-writer</artifactId>
+            <version>1.0.0</version>
         </dependency>
 
     </dependencies>
