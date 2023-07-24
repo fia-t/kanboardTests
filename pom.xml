@@ -15,6 +15,7 @@
         <suite>signin</suite>
         <suite>allProjectTest</suite>
         <suite>allTaskTest</suite>
+        <suite>regression</suite>
     </properties>
 
     <dependencies>

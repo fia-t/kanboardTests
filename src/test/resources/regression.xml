@@ -1,12 +1,13 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 <suite name="AllTests">
-    <suite-files>
-        <suite-file path="signin.xml" />
-    </suite-files>
-    <suite-files>
-        <suite-file path="allProjectTest.xml" />
-    </suite-files>
-    <suite-files>
-        <suite-file path="allTaskTest.xml" />
-    </suite-files>
+    <test name="AllTests">
+        <classes>
+            <class name="test.ui.tests.signin.SigninTest" />
+            <class name="test.ui.tests.project.create.createProjectTests" />
+            <class name="test.ui.tests.project.remove.removeProjectTests" />
+            <class name="test.ui.tests.task.create.createTaskTests" />
+            <class name="test.ui.tests.task.comments.addCommentTaskTest" />
+            <class name="test.ui.tests.task.changeStatus.closeTaskTest" />
+        </classes>
+    </test>
 </suite>
