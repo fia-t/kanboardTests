@@ -63,6 +63,6 @@ public class closeTaskTest extends BaseTest {
         userApiSteps.deleteUser(userId);
         projectApiSteps.removeProject(projectId);
         projectUserApiSteps.removeProjectUser(projectId, userId);
-        taskApiSteps.removeTask(taskId);
+        taskApiSteps.removeTask(Integer.valueOf(taskId));
     }
 }

@@ -1,20 +1,14 @@
 package test.api.tests;
 
-import io.restassured.RestAssured;
-import io.restassured.path.json.JsonPath;
-import io.restassured.response.Response;
-import org.testng.Assert;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 import test.api.steps.user.UserApiSteps;
 import test.ui.testdata.TestData;
 
-import java.util.List;
-
 public class ApiUserTests extends ApiTestInit{
     UserApiSteps userApiSteps = new UserApiSteps();
     private String userId;
-    private Boolean resultAfterDeleteUser;
+    private Boolean resultAfterRemoveUser;
     @Test()
     public void createUserApiTest(){
         userId = userApiSteps.createUser(TestData.USERNAME, TestData.PASSWORD);
@@ -23,12 +17,12 @@ public class ApiUserTests extends ApiTestInit{
         softAssert.assertNotNull(userId, "UserId is null");
         softAssert.assertAll();
     }
-    @Test()
+    @Test(dependsOnMethods = "createUserApiTest")
     public void removeUserApiTest(){
-        resultAfterDeleteUser = userApiSteps.deleteUser(userId);
-        System.out.println("!!!!!!!!!!!!!!!!!!!!!" + resultAfterDeleteUser);
+        resultAfterRemoveUser = userApiSteps.deleteUser(userId);
+        System.out.println("resultAfterRemoveUser: " + resultAfterRemoveUser);
         SoftAssert softAssert = new SoftAssert();
-        softAssert.assertTrue(resultAfterDeleteUser, "User delete false");
+        softAssert.assertTrue(resultAfterRemoveUser, "User delete false");
         softAssert.assertAll();
     }
 }

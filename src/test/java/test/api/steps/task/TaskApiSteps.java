@@ -39,10 +39,10 @@ public class TaskApiSteps extends BaseApiSteps {
         return result.getResult().toString();
     }
     @Step("Remove Task")
-    public boolean removeTask(String taskId) {
+    public boolean removeTask(Integer taskId) {
 
         BodyArgs bodyArgs = BodyArgs.builder()
-                .params(new TaskId(Integer.valueOf(taskId)))
+                .params(new TaskId(taskId))
                 .method(REMOVE_TASK)
                 .build();
 

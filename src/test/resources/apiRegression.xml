@@ -1,8 +1,10 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
-<suite name="ApiUserTests">
-    <test name="apiCreateRemoveTests">
+<suite name="AllApiTests">
+    <test name="AllApiTests">
         <classes>
             <class name="test.api.tests.ApiUserTests" />
+            <class name="test.api.tests.ApiProjectTests" />
+            <class name="test.api.tests.ApiTaskTests" />
         </classes>
     </test>
 </suite>
