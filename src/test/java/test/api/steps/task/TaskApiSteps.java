@@ -1,15 +1,17 @@
 package test.api.steps.task;
 
 import io.qameta.allure.Step;
+import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
 import test.api.requests.BodyArgs;
+import test.api.requests.project.ProjectId;
 import test.api.requests.task.TaskId;
 import test.api.requests.task.createTaskRequest;
 import test.api.responses.Result;
 import test.api.steps.BaseApiSteps;
 
-import static test.api.methods.Tasks.CREATE_TASK;
-import static test.api.methods.Tasks.REMOVE_TASK;
+import static test.api.methods.Projects.GET_PROJECT;
+import static test.api.methods.Tasks.*;
 import static utils.EnvProperties.API_TOKEN;
 import static utils.EnvProperties.API_USERNAME;
 
@@ -48,5 +50,20 @@ public class TaskApiSteps extends BaseApiSteps {
 
         Response response = postRequest(API_USERNAME, API_TOKEN, bodyArgs);
         return (boolean) response.as(Result.class).getResult();
+    }
+
+    @Step("Get task")
+    public JsonPath getTask(Integer taskId) {
+
+        BodyArgs bodyArgs = BodyArgs.builder()
+                .params(new TaskId(taskId))
+                .method(GET_TASK)
+                .build();
+
+        Response response = postRequest(API_USERNAME, API_TOKEN, bodyArgs);
+        response.prettyPrint();
+        response.then().statusCode(200);
+        JsonPath jsonPath = response.jsonPath();
+        return jsonPath;
     }
 }

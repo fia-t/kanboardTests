@@ -1,6 +1,7 @@
 package test.api.steps.user;
 
 import io.qameta.allure.Step;
+import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
 import static test.api.methods.Users.*;
 import test.api.requests.BodyArgs;
@@ -43,6 +44,22 @@ public class UserApiSteps extends BaseApiSteps {
                 .build();
 
         Response response = postRequest(API_USERNAME, API_TOKEN, bodyArgs);
+        response.prettyPrint();
+        response.then().statusCode(200);
         return (boolean) response.as(Result.class).getResult();
+    }
+    @Step("Get user")
+    public JsonPath getUser(Integer userId) {
+
+        BodyArgs bodyArgs = BodyArgs.builder()
+                .params(new UserId(userId))
+                .method(GET_USER)
+                .build();
+
+        Response response = postRequest(API_USERNAME, API_TOKEN, bodyArgs);
+        response.prettyPrint();
+        response.then().statusCode(200);
+        JsonPath jsonPath = response.jsonPath();
+        return jsonPath;
     }
 }

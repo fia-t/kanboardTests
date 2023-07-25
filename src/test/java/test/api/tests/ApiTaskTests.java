@@ -1,5 +1,6 @@
 package test.api.tests;
 
+import io.restassured.path.json.JsonPath;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 import test.api.steps.project.ProjectApiSteps;
@@ -16,10 +17,14 @@ public class ApiTaskTests extends ApiTestInit{
     private String userId;
     private String projectId;
     private String taskId;
+    private JsonPath result;
+    private String resultTaskTitle;
+    private String resultTaskId;
+    private String resultDescriptionId;
     private Boolean resultAfterRemoveUser;
     private Boolean resultAfterRemoveProject;
     private Boolean resultAfterRemoveTask;
-    @Test()
+    @Test(priority = 1)
     public void createTaskApiTest(){
         userId = userApiSteps.createUser(TestData.USERNAME, TestData.PASSWORD);
         SoftAssert softAssert = new SoftAssert();
@@ -36,7 +41,25 @@ public class ApiTaskTests extends ApiTestInit{
 
         softAssert.assertAll();
     }
-    @Test(dependsOnMethods = "createTaskApiTest")
+    @Test(priority = 2)
+    public void getTaskApiTest(){
+        result = taskApiSteps.getTask(Integer.valueOf(taskId));
+        System.out.println(result);
+
+        SoftAssert softAssert = new SoftAssert();
+        resultTaskTitle = result.getString("result.title");
+        softAssert.assertEquals(resultTaskTitle, TestData.taskTitle);
+
+        resultTaskId = result.getString("result.id");
+        softAssert.assertEquals(resultTaskId, taskId);
+
+        resultDescriptionId = result.getString("result.description");
+        softAssert.assertEquals(resultDescriptionId, TestData.taskDescription);
+
+        softAssert.assertAll();
+    }
+
+    @Test(priority = 3)
     public void removeTaskApiTest(){
         resultAfterRemoveUser = userApiSteps.deleteUser(userId);
         System.out.println("resultAfterRemoveUser:" + resultAfterRemoveUser);

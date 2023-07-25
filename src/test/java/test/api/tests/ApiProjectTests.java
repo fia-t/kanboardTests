@@ -1,5 +1,6 @@
 package test.api.tests;
 
+import io.restassured.path.json.JsonPath;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 import test.api.steps.project.ProjectApiSteps;
@@ -13,7 +14,10 @@ public class ApiProjectTests extends ApiTestInit{
     private String projectId;
     private Boolean resultAfterRemoveUser;
     private Boolean resultAfterRemoveProject;
-    @Test()
+    private JsonPath result;
+    private String resultProjectName;
+    private String resultProjectId;
+    @Test(priority = 1)
     public void createProjectApiTest(){
         userId = userApiSteps.createUser(TestData.USERNAME, TestData.PASSWORD);
         SoftAssert softAssert = new SoftAssert();
@@ -24,7 +28,22 @@ public class ApiProjectTests extends ApiTestInit{
         softAssert.assertNotNull(projectId, "ProjectId is null");
         softAssert.assertAll();
     }
-    @Test(dependsOnMethods = "createProjectApiTest")
+    @Test(priority = 2)
+    public void getProjectApiTest(){
+        result = projectApiSteps.getProject(Integer.valueOf(projectId));
+        System.out.println(result);
+
+        SoftAssert softAssert = new SoftAssert();
+        resultProjectName = result.getString("result.name");
+        softAssert.assertEquals(resultProjectName, TestData.projectNAME);
+
+        resultProjectId = result.getString("result.id");
+        softAssert.assertEquals(resultProjectId, projectId);
+
+        softAssert.assertAll();
+    }
+
+    @Test(priority = 3)
     public void removeProjectApiTest(){
         resultAfterRemoveUser = userApiSteps.deleteUser(userId);
         System.out.println("resultAfterRemoveUser: " + resultAfterRemoveUser);
