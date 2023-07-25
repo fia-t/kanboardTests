@@ -1,6 +1,6 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
-<suite name="uiTests">
-    <test name="uiTests">
+<suite name="AllTests">
+    <test name="AllTests">
         <classes>
             <class name="test.ui.tests.signin.SigninTest" />
             <class name="test.ui.tests.project.create.createProjectTests" />
@@ -8,6 +8,9 @@
             <class name="test.ui.tests.task.create.createTaskTests" />
             <class name="test.ui.tests.task.comments.addCommentTaskTest" />
             <class name="test.ui.tests.task.changeStatus.closeTaskTest" />
+            <class name="test.api.tests.ApiUserTests" />
+            <class name="test.api.tests.ApiProjectTests" />
+            <class name="test.api.tests.ApiTaskTests" />
         </classes>
     </test>
 </suite>

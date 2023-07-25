@@ -20,6 +20,7 @@
         <suite>task/apiTaskTests</suite>
         <suite>uiRegression</suite>
         <suite>apiRegression</suite>
+        <suite>regression</suite>
     </properties>
 
     <dependencies>
