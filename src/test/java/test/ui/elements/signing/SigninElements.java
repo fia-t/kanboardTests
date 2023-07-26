@@ -6,7 +6,7 @@ import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$x;
 
 public class SigninElements {
-    public SelenideElement userField() {return $("#form-username");}
+    public static SelenideElement userField() {return $("#form-username");}
 
     public SelenideElement passwordField() {
         return $("#form-password");

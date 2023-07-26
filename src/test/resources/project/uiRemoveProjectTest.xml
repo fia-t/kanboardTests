@@ -1,0 +1,8 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="removeProjectTest">
+    <test name="Remove Project">
+        <classes>
+            <class name="test.ui.tests.project.remove.removeProjectTests" />
+        </classes>
+    </test>
+</suite>

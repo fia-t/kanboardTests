@@ -9,6 +9,7 @@ import test.api.steps.user.UserApiSteps;
 import test.ui.steps.signin.SigninPage;
 import test.ui.steps.task.TaskPage;
 import test.ui.steps.task.ViewBoardPage;
+import test.ui.testdata.RandomData;
 import test.ui.testdata.TestData;
 import test.ui.tests.BaseTest;
 import test.configuration.browserConfiguration;
@@ -19,9 +20,10 @@ public class createTaskTests extends BaseTest {
     ProjectUserApiSteps projectUserApiSteps = new ProjectUserApiSteps();
     private String userId;
     private String projectId;
+    private String USERNAME = RandomData.randomName();
     @BeforeClass
     public void prepareDataForTest() {
-        userId = userApiSteps.createUser(TestData.USERNAME, TestData.PASSWORD);
+        userId = userApiSteps.createUser(USERNAME, TestData.PASSWORD);
         System.out.println(userId);
         projectId = projectApiSteps.createProject(TestData.projectNAME, Integer.valueOf(userId));
         System.out.println(projectId);
@@ -30,17 +32,16 @@ public class createTaskTests extends BaseTest {
     }
 
     @Description("The test is positive case for create Task")
-    @Test(dataProvider = "browsers")
-    public void createTaskPositive(String browser){
-        browserConfiguration.browserConfiguration(browser);
+    @Test
+    public void createTaskPositive(){
 
         String  dashboardAfterSignin  = new SigninPage()
                 .openSigninPage()
-                .signinByUser(TestData.USERNAME, TestData.PASSWORD)
+                .signinByUser(USERNAME, TestData.PASSWORD)
                 .assertDashboardIsOpened();
 
         SoftAssert softAssert = new SoftAssert();
-        softAssert.assertEquals(dashboardAfterSignin, TestData.dashboardAfterSigninMessage +TestData.USERNAME, "User is not signin");
+        softAssert.assertEquals(dashboardAfterSignin, TestData.dashboardAfterSigninMessage +USERNAME, "User is not signin");
 
         ViewBoardPage boardPage = new TaskPage().createTask(TestData.taskTitle);
 
@@ -53,14 +54,14 @@ public class createTaskTests extends BaseTest {
         softAssert.assertTrue(taskDetailPage.isTaskDetailCreatorTextVisible(), "Element TaskBoardTitle is not visible");
         softAssert.assertEquals(taskDetailPage.getTaskStatusOpen(), TestData.taskStatusOpen, "Status not equal");
         softAssert.assertEquals(taskDetailPage.getTaskDetailTitleText(), TestData.taskTitle, "Project was not created");
-        softAssert.assertEquals(taskDetailPage.getTaskDetailCreatorText(), TestData.USERNAME, "Project was not created");
+        softAssert.assertEquals(taskDetailPage.getTaskDetailCreatorText(), USERNAME, "Project was not created");
 
         softAssert.assertAll();
     }
 
     @AfterClass(alwaysRun = true)
     public void removeDataAfterTest() {
-        userApiSteps.deleteUser(userId);
+        userApiSteps.deleteUser(Integer.valueOf(userId));
         projectApiSteps.removeProject(projectId);
         projectUserApiSteps.removeProjectUser(projectId, userId);
     }

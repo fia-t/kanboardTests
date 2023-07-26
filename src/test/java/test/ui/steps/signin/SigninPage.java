@@ -1,10 +1,7 @@
 package test.ui.steps.signin;
 
-import com.codeborne.selenide.Configuration;
 import io.qameta.allure.Step;
 import test.ui.elements.signing.SigninElements;
-import test.ui.steps.project.ProjectPage;
-import test.ui.elements.signing.DashboardAfterSignInElements;
 
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.open;
@@ -22,6 +19,4 @@ public class SigninPage extends SigninElements {
         submitButton().click();
         return new DashboardAfterSignInPage();
     }
-
-
 }

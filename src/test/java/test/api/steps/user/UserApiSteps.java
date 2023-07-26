@@ -36,10 +36,10 @@ public class UserApiSteps extends BaseApiSteps {
         return result.getResult().toString();
     }
     @Step("Remove user")
-    public boolean deleteUser(String userId) {
+    public boolean deleteUser(Integer userId) {
 
         BodyArgs bodyArgs = BodyArgs.builder()
-                .params(new UserId(Integer.valueOf(userId)))
+                .params(new UserId(userId))
                 .method(DELETE_USER)
                 .build();
 

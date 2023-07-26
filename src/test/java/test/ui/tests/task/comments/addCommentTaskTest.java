@@ -11,6 +11,7 @@ import test.configuration.browserConfiguration;
 import test.ui.steps.signin.SigninPage;
 import test.ui.steps.task.TaskPage;
 import test.ui.steps.task.ViewBoardPage;
+import test.ui.testdata.RandomData;
 import test.ui.testdata.TestData;
 import test.ui.tests.BaseTest;
 
@@ -22,9 +23,10 @@ public class addCommentTaskTest extends BaseTest {
     private String userId;
     private String projectId;
     private String taskId;
+    private String USERNAME = RandomData.randomName();
     @BeforeMethod
     public void prepareDataForTest() {
-        userId = userApiSteps.createUser(TestData.USERNAME, TestData.PASSWORD);
+        userId = userApiSteps.createUser(USERNAME, TestData.PASSWORD);
         System.out.println(userId);
 
         projectId = projectApiSteps.createProject(TestData.projectNAME, Integer.valueOf(userId));
@@ -38,30 +40,29 @@ public class addCommentTaskTest extends BaseTest {
     }
 
     @Description("The test is positive case for add comment to Task")
-    @Test(dataProvider = "browsers")
-    public void addCommentPositive(String browser){
-        browserConfiguration.browserConfiguration(browser);
+    @Test
+    public void addCommentPositive(){
 
         String  dashboardAfterSignin  = new SigninPage()
                 .openSigninPage()
-                .signinByUser(TestData.USERNAME, TestData.PASSWORD)
+                .signinByUser(USERNAME, TestData.PASSWORD)
                 .assertDashboardIsOpened();
 
         SoftAssert softAssert = new SoftAssert();
-        softAssert.assertEquals(dashboardAfterSignin, TestData.dashboardAfterSigninMessage +TestData.USERNAME, "User is not signin");
+        softAssert.assertEquals(dashboardAfterSignin, TestData.dashboardAfterSigninMessage +USERNAME, "User is not signin");
 
         ViewBoardPage addCommentTasks = new TaskPage()
                 .addCommentForTasks(TestData.comment);
 
         softAssert.assertEquals(addCommentTasks.getCommentForTask(), TestData.comment, "Comment not equal");
-        softAssert.assertEquals(addCommentTasks.getCommentForTaskUser(), TestData.USERNAME, "User not equal");
+        softAssert.assertEquals(addCommentTasks.getCommentForTaskUser(), USERNAME, "User not equal");
 
         softAssert.assertAll();
     }
 
     @AfterMethod(alwaysRun = true)
     public void removeDataAfterTest() {
-        userApiSteps.deleteUser(userId);
+        userApiSteps.deleteUser(Integer.valueOf(userId));
         projectApiSteps.removeProject(projectId);
         projectUserApiSteps.removeProjectUser(projectId, userId);
         taskApiSteps.removeTask(Integer.valueOf(taskId));

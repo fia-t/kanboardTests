@@ -7,6 +7,7 @@ import test.api.steps.project.ProjectApiSteps;
 import test.api.steps.projectuser.ProjectUserApiSteps;
 import test.api.steps.task.TaskApiSteps;
 import test.api.steps.user.UserApiSteps;
+import test.ui.testdata.RandomData;
 import test.ui.testdata.TestData;
 
 public class ApiTaskTests extends ApiTestInit{
@@ -24,9 +25,10 @@ public class ApiTaskTests extends ApiTestInit{
     private Boolean resultAfterRemoveUser;
     private Boolean resultAfterRemoveProject;
     private Boolean resultAfterRemoveTask;
+    private String USERNAME = RandomData.randomName();
     @Test(priority = 1)
     public void createTaskApiTest(){
-        userId = userApiSteps.createUser(TestData.USERNAME, TestData.PASSWORD);
+        userId = userApiSteps.createUser(USERNAME, TestData.PASSWORD);
         SoftAssert softAssert = new SoftAssert();
         softAssert.assertNotNull(userId, "UserId is null");
 
@@ -61,7 +63,7 @@ public class ApiTaskTests extends ApiTestInit{
 
     @Test(priority = 3)
     public void removeTaskApiTest(){
-        resultAfterRemoveUser = userApiSteps.deleteUser(userId);
+        resultAfterRemoveUser = userApiSteps.deleteUser(Integer.valueOf(userId));
         System.out.println("resultAfterRemoveUser:" + resultAfterRemoveUser);
         SoftAssert softAssert = new SoftAssert();
         softAssert.assertTrue(resultAfterRemoveUser, "User remove false");

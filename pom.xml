@@ -14,8 +14,13 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <suite>auth/uiSignin</suite>
         <suite>user/apiUsersTests</suite>
+        <suite>project/uiCreateProjectTest</suite>
+        <suite>project/uiRemoveProjectTest</suite>
         <suite>project/uiProjectTest</suite>
         <suite>project/apiProjectTests</suite>
+        <suite>task/uiCreateTaskTest</suite>
+        <suite>task/uiAddCommentTaskTest</suite>
+        <suite>task/uiCloseTaskTest</suite>
         <suite>task/uiTaskTest</suite>
         <suite>task/apiTaskTests</suite>
         <suite>uiRegression</suite>

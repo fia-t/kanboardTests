@@ -12,9 +12,8 @@ import test.configuration.browserConfiguration;
 
 public class createProjectTests extends BaseTest {
     @Description("The test is positive case for create project")
-    @Test(dataProvider = "browsers")
-    public void createProjectPositive(String browser){
-        browserConfiguration.browserConfiguration(browser);
+    @Test
+    public void createProjectPositive(){
 
         String  dashboardAfterSignin  = new SigninPage()
                 .openSigninPage()

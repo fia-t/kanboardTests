@@ -12,9 +12,8 @@ import test.configuration.browserConfiguration;
 
 public class removeProjectTests extends BaseTest {
     @Description("The test is positive case for remove project")
-    @Test(dataProvider = "browsers")
-    public void removeProjectPositive(String browser){
-        browserConfiguration.browserConfiguration(browser);
+    @Test
+    public void removeProjectPositive(){
 
         String  dashboardAfterSignin  = new SigninPage()
                 .openSigninPage()

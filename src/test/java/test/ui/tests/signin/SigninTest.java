@@ -1,32 +1,19 @@
 package test.ui.tests.signin;
 
-import com.codeborne.selenide.Configuration;
 import jdk.jfr.Description;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
-import test.api.steps.user.UserApiSteps;
 import test.ui.steps.signin.SigninPage;
 import test.ui.tests.BaseTest;
 import test.ui.testdata.TestData;
-import test.configuration.browserConfiguration;
 
 public class SigninTest extends BaseTest {
-    UserApiSteps userApiSteps = new UserApiSteps();
-    private String userId;
-
-    @BeforeMethod
-    public void prepareDataForTest() {
-        userId = userApiSteps.createUser(TestData.USERNAME, TestData.PASSWORD);
-        System.out.println(userId);
-    }
-
     @Description("The test is positive case for Sign In to system as user")
-    @Test(dataProvider = "browsers")
-    public void signInPositive(String browser){
+//    @Test(dataProvider = "browsers")
+    @Test
+    public void signInPositive(){
 
-        browserConfiguration.browserConfiguration(browser);
+//        browserConfiguration.setBrowserConfiguration(browser);
 
         String  dashboardAfterSignin  = new SigninPage()
                 .openSigninPage()
@@ -39,9 +26,10 @@ public class SigninTest extends BaseTest {
     }
 
     @Description("The test is negative case for Sign In to system")
-    @Test(dataProvider = "browsers")
-    public void signInNegative(String browser){
-        browserConfiguration.browserConfiguration(browser);
+//    @Test(dataProvider = "browsers")
+    @Test
+    public void signInNegative(){
+//        browserConfiguration.setBrowserConfiguration(browser);
         String messageActual = new SigninPage()
                 .openSigninPage()
                 .signinByUser(TestData.username, TestData.password)
@@ -50,10 +38,5 @@ public class SigninTest extends BaseTest {
         SoftAssert softAssert = new SoftAssert();
         softAssert.assertEquals(messageActual, TestData.errorMessage, "User is signin");
         softAssert.assertAll();
-    }
-
-    @AfterMethod(alwaysRun = true)
-    public void removeUserAfterTest() {
-        userApiSteps.deleteUser(userId);
     }
 }
