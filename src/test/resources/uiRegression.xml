@@ -1,0 +1,13 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="uiTests">
+    <test name="uiTests">
+        <classes>
+            <class name="test.ui.tests.signin.SigninTest" />
+            <class name="test.ui.tests.project.create.createProjectTests" />
+            <class name="test.ui.tests.project.remove.removeProjectTests" />
+            <class name="test.ui.tests.task.create.createTaskTests" />
+            <class name="test.ui.tests.task.comments.addCommentTaskTest" />
+            <class name="test.ui.tests.task.changeStatus.closeTaskTest" />
+        </classes>
+    </test>
+</suite>
