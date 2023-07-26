@@ -1,5 +1,5 @@
 # Kanboard Tests (API/UI) 
-Written by Iryna Fesenko as final project for course QA Automation, 25/07/2023
+Final project for course QA Automation, 25/07/2023
 
 ### Instruction:
 
@@ -74,6 +74,3 @@ You can start suite test in browsers: Chrome headless, Chrome, Firefox. For this
 ### Generate Allure report
 
 For generate Allure report you should use next command `allure serve target/allure-results`
-
-
-## Nice testing!

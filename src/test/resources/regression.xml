@@ -1,5 +1,5 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
-<suite name="AllTests">
+<suite name="regression">
     <test name="AllTests">
         <classes>
             <class name="test.ui.tests.signin.SigninTest" />
